@@ -1,5 +1,3 @@
-// API service. Mirrors the REST endpoints documented in the README.
-// Swap the implementation here to Axios calls against the Express backend in production.
 import { store, makeToken, newId } from './store';
 import { sleep, uid } from '../utils/formatters';
 import { ROLE } from '../utils/constants';
@@ -18,7 +16,6 @@ async function ok(data, delay = 250) {
 }
 
 function hashPassword(pw) {
-  // Demo only — real backend uses bcrypt. Obfuscate so plaintext isn't stored visibly.
   let h = 0;
   for (let i = 0; i < pw.length; i++) h = (h * 31 + pw.charCodeAt(i)) >>> 0;
   return `h${h.toString(36)}`;
@@ -73,7 +70,7 @@ export const api = {
 
   async forgotPassword({ email }) {
     const user = store.users.findByEmail(email);
-    // Always succeed to avoid email enumeration.
+  
     const resetToken = user ? uid('rst') : null;
     if (user) {
       store.users.update(user.id, { resetToken, resetExpires: Date.now() + 1000 * 60 * 30 });
@@ -118,7 +115,7 @@ export const api = {
     return ok(store.users.update(userId, { avatar: dataUrl }));
   },
 
-  // ---------- Transactions ----------
+  
   async listTransactions(userId, params = {}) {
     let items = store.transactions.forUser(userId);
     const {

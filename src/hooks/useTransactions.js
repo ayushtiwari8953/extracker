@@ -21,7 +21,7 @@ export function useTransactions(params = {}) {
       .catch((e) => { if (active) setError(e.message); })
       .finally(() => { if (active) setLoading(false); });
     return () => { active = false; };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, [user, reloadKey, JSON.stringify(params)]);
 
   return { ...data, loading, error, reload };

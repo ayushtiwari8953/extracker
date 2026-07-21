@@ -155,7 +155,7 @@ export const store = {
 };
 
 export function makeToken(userId) {
-  // Demo-only token. Real backend signs a JWT with jsonwebtoken.
+ 
   return btoa(`${userId}:${Date.now()}:${Math.random().toString(36).slice(2)}`);
 }
 

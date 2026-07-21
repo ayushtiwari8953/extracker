@@ -41,7 +41,7 @@ export default function AuthLayout({ children, title, subtitle }) {
             ))}
           </ul>
         </div>
-        <p className="relative z-10 text-xs text-brand-100/70">© {new Date().getFullYear()} {APP_NAME}. Built with the MERN stack.</p>
+        <p className="relative z-10 text-xs text-brand-100/70">© {new Date().getFullYear()} {APP_NAME}. Built By Ayuah❤️</p>
       </div>
 
       {/* Right form panel */}

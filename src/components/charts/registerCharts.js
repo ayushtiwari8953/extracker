@@ -1,4 +1,3 @@
-// Centralized Chart.js registration so tree-shaking keeps the bundle small.
 import {
   Chart as ChartJS,
   CategoryScale,

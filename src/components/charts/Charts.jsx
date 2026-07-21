@@ -16,7 +16,7 @@ function useChartTheme() {
   };
 }
 
-// Plain factory — no hooks. Builds a Chart.js tooltip label callback.
+
 function makeTooltipCallback(currency, label) {
   return (ctx) => {
     const v = ctx.raw;

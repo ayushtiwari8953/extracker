@@ -1,4 +1,3 @@
-// Pure functions that derive analytics from a transaction list.
 import { monthKey, monthLabel, isSameMonth } from '../utils/formatters';
 import { MONTH_NAMES } from '../utils/constants';
 
@@ -45,7 +44,7 @@ export function categoryBreakdown(transactions, type = 'expense') {
 }
 
 export function weeklyTotals(transactions, year, month) {
-  // month is 0-indexed
+  
   const weeks = [];
   const first = new Date(year, month, 1);
   const last = new Date(year, month + 1, 0);

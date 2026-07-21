@@ -32,7 +32,7 @@ export const me = asyncHandler(async (req, res) => {
 export const forgotPassword = asyncHandler(async (req, res) => {
   const { email } = req.body;
   const user = await User.findOne({ email });
-  // Always respond 200 to avoid email enumeration.
+  
   if (!user) return res.json({ success: true, message: 'If that email exists, a reset link has been sent.' });
 
   const resetToken = signResetToken(user._id);
