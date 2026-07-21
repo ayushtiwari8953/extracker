@@ -12,14 +12,15 @@ function useChartTheme() {
     text: dark ? '#c2c8d4' : '#525968',
     tooltipBg: dark ? '#1a1d24' : '#ffffff',
     tooltipBorder: dark ? '#2a2e38' : '#eef0f4',
+    currency: settings.currency,
   };
 }
 
-function tooltipCurrency(label) {
-  const { settings } = useSettings();
+// Plain factory — no hooks. Builds a Chart.js tooltip label callback.
+function makeTooltipCallback(currency, label) {
   return (ctx) => {
     const v = ctx.raw;
-    return `${label || ctx.dataset.label || ''}: ${formatCurrency(v, settings.currency, { withSymbol: true })}`;
+    return `${label || ctx.dataset.label || ''}: ${formatCurrency(v, currency)}`;
   };
 }
 
@@ -57,11 +58,11 @@ export function IncomeExpenseLine({ data, height = 260 }) {
     maintainAspectRatio: false,
     plugins: {
       legend: { position: 'top', align: 'end', labels: { usePointStyle: true, color: t.text, font: { size: 12 } } },
-      tooltip: { backgroundColor: t.tooltipBg, borderColor: t.tooltipBorder, borderWidth: 1, padding: 10, callbacks: { label: tooltipCurrency() } },
+      tooltip: { backgroundColor: t.tooltipBg, borderColor: t.tooltipBorder, borderWidth: 1, padding: 10, callbacks: { label: makeTooltipCallback(t.currency) } },
     },
     scales: {
       x: { grid: { display: false }, ticks: { color: t.text, font: { size: 11 } } },
-      y: { grid: { color: t.grid }, ticks: { color: t.text, font: { size: 11 }, callback: (v) => formatCurrency(v, 'INR', { compact: true }) } },
+      y: { grid: { color: t.grid }, ticks: { color: t.text, font: { size: 11 }, callback: (v) => formatCurrency(v, t.currency, { compact: true }) } },
     },
   };
   return <div style={{ height }}><Line data={chartData} options={options} /></div>;
@@ -86,7 +87,7 @@ export function CategoryDoughnut({ data, height = 260 }) {
     cutout: '62%',
     plugins: {
       legend: { position: 'right', labels: { usePointStyle: true, color: t.text, font: { size: 11 }, padding: 12 } },
-      tooltip: { backgroundColor: t.tooltipBg, borderColor: t.tooltipBorder, borderWidth: 1, padding: 10, callbacks: { label: tooltipCurrency() } },
+      tooltip: { backgroundColor: t.tooltipBg, borderColor: t.tooltipBorder, borderWidth: 1, padding: 10, callbacks: { label: makeTooltipCallback(t.currency) } },
     },
   };
   return <div style={{ height }}><Doughnut data={chartData} options={options} /></div>;
@@ -103,7 +104,7 @@ export function CategoryPie({ data, height = 260 }) {
     maintainAspectRatio: false,
     plugins: {
       legend: { position: 'right', labels: { usePointStyle: true, color: t.text, font: { size: 11 }, padding: 12 } },
-      tooltip: { backgroundColor: t.tooltipBg, borderColor: t.tooltipBorder, borderWidth: 1, padding: 10, callbacks: { label: tooltipCurrency() } },
+      tooltip: { backgroundColor: t.tooltipBg, borderColor: t.tooltipBorder, borderWidth: 1, padding: 10, callbacks: { label: makeTooltipCallback(t.currency) } },
     },
   };
   return <div style={{ height }}><Pie data={chartData} options={options} /></div>;
@@ -123,11 +124,11 @@ export function WeeklyBar({ data, height = 260 }) {
     maintainAspectRatio: false,
     plugins: {
       legend: { position: 'top', align: 'end', labels: { usePointStyle: true, color: t.text, font: { size: 12 } } },
-      tooltip: { backgroundColor: t.tooltipBg, borderColor: t.tooltipBorder, borderWidth: 1, padding: 10, callbacks: { label: tooltipCurrency() } },
+      tooltip: { backgroundColor: t.tooltipBg, borderColor: t.tooltipBorder, borderWidth: 1, padding: 10, callbacks: { label: makeTooltipCallback(t.currency) } },
     },
     scales: {
       x: { grid: { display: false }, ticks: { color: t.text, font: { size: 11 } } },
-      y: { grid: { color: t.grid }, ticks: { color: t.text, font: { size: 11 }, callback: (v) => formatCurrency(v, 'INR', { compact: true }) } },
+      y: { grid: { color: t.grid }, ticks: { color: t.text, font: { size: 11 }, callback: (v) => formatCurrency(v, t.currency, { compact: true }) } },
     },
   };
   return <div style={{ height }}><Bar data={chartData} options={options} /></div>;
@@ -147,11 +148,11 @@ export function YearlyBar({ data, height = 260 }) {
     maintainAspectRatio: false,
     plugins: {
       legend: { position: 'top', align: 'end', labels: { usePointStyle: true, color: t.text, font: { size: 12 } } },
-      tooltip: { backgroundColor: t.tooltipBg, borderColor: t.tooltipBorder, borderWidth: 1, padding: 10, callbacks: { label: tooltipCurrency() } },
+      tooltip: { backgroundColor: t.tooltipBg, borderColor: t.tooltipBorder, borderWidth: 1, padding: 10, callbacks: { label: makeTooltipCallback(t.currency) } },
     },
     scales: {
       x: { grid: { display: false }, ticks: { color: t.text, font: { size: 11 } } },
-      y: { grid: { color: t.grid }, ticks: { color: t.text, font: { size: 11 }, callback: (v) => formatCurrency(v, 'INR', { compact: true }) } },
+      y: { grid: { color: t.grid }, ticks: { color: t.text, font: { size: 11 }, callback: (v) => formatCurrency(v, t.currency, { compact: true }) } },
     },
   };
   return <div style={{ height }}><Bar data={chartData} options={options} /></div>;

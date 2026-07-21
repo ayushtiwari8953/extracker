@@ -9,7 +9,7 @@ import Badge from '../components/ui/Badge';
 import { formatDate } from '../utils/formatters';
 
 export default function Profile() {
-  const { user, setUser, refresh } = useAuth();
+  const { user, setUser } = useAuth();
   const [savingProfile, setSavingProfile] = useState(false);
   const [savingPw, setSavingPw] = useState(false);
   const [showPw, setShowPw] = useState(false);
