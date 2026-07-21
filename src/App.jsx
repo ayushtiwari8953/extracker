@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -31,7 +31,7 @@ function PageLoader() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AuthProvider>
         <SettingsProvider>
           <Suspense fallback={<PageLoader />}>
@@ -84,6 +84,6 @@ export default function App() {
           />
         </SettingsProvider>
       </AuthProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }

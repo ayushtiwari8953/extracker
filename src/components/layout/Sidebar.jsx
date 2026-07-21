@@ -11,7 +11,7 @@ import { APP_NAME } from '../../utils/constants';
 const nav = [
   { to: '/app/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { to: '/app/transactions', label: 'Transactions', icon: ArrowLeftRight },
-  { to: '/app/analytics', label: 'Analytics', icon: ChartPie },
+  { to: '/app/analytics', label: 'Analytics', icon: PieChart },
   { to: '/app/budgets', label: 'Budgets', icon: Wallet },
   { to: '/app/reports', label: 'Reports', icon: FileText },
   { to: '/app/profile', label: 'Profile', icon: UserIcon },
